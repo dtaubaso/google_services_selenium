@@ -1,0 +1,4 @@
+chromedriver-binary==108.0.5359.71.0
+fastapi==0.89.1
+selenium==4.7.2
+urllib3==1.26.13
