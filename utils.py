@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time, requests, json, re
+import chromedriver_binary
 
 
 # Google Questions
@@ -33,18 +34,24 @@ def getRelated(url):
   options.add_argument("--disable-dev-shm-usage")
   options.add_argument("--no-sandbox")
   driver = webdriver.Chrome(options=options)
+  driver.implicitly_wait(3)
   with driver:
     driver.get(url)
     x_path = "//*[text()='Otras personas también buscan' or text()='También se buscó']"
-    x_path_link = "//*[text()='Ver más' or text()='Otras personas también buscan' or text()='También se buscó']"
+    x_path_link = "//*[text()='Otras personas también buscan' or text()='También se buscó' or text()='Ver más']"
     try:
-        WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, x_path)))
-        link = WebDriverWait(driver, 10).until(
-            EC.element_to_be_clickable((By.XPATH, x_path_link)))
-        link.click()
+        # mbappe
+        if driver.find_elements(By.CLASS_NAME,"TzHB6b"):
+          link = WebDriverWait(driver, 5).until(
+            EC.element_to_be_clickable((By.LINK_TEXT, "Ver más")))
+          link.click()
+        elif driver.find_elements(By.CLASS_NAME,"liYKde"):
+          link = WebDriverWait(driver, 5).until(
+            EC.element_to_be_clickable((By.XPATH, x_path)))
+          link.click()
         time.sleep(2)
-        WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.CLASS_NAME, 'ct5Ked.klitem-tr.PZPZlf')))
-        elements = driver.find_elements(By.CLASS_NAME,"ct5Ked.klitem-tr.PZPZlf")
+        WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.CLASS_NAME, 'ct5Ked')))
+        elements = driver.find_elements(By.CLASS_NAME,"ct5Ked")
         element_list = [x.text for x in elements]
         related_ent = [sub.replace('\n', ' ') for sub in element_list]
         related_ent = [re.sub(' Tendencias| Tendencia| Desde.*', '', a) for a in related_ent]
