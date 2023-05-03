@@ -25,7 +25,7 @@ def google_question(req: Dict[Any, Any] = None):
             return {kw: ["Nothing Found"]}
     except Exception as e:
         print(e)
-        text = f'*Google Questions* Error: {e}'
+        text = f'*Google People Also Ask* Error: {e}'
         send_slack(text, webhook_url)
 
 @app.post("/people_also_search")

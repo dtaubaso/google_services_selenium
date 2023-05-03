@@ -17,10 +17,10 @@ def getGoogleQuestions(url, clicks):
   with driver:
     driver.get(url)
     try:
-      for a in range(clicks):
-        driver.find_elements(By.XPATH, "//div[@jsname='F79BRe']")[a].click()
+      for i in range(clicks):
+        driver.find_elements(By.XPATH, "//div[@jsname='pcRaIe']")[i].click()
         time.sleep(0.3)
-      items = driver.find_elements(By.XPATH, "//div[@jsname='jIA8B']")
+      items = driver.find_elements(By.CLASS_NAME, "CSkcDe")
       return [a.text for a in items]
     except Exception as e:
       print(e)
