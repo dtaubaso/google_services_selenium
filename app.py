@@ -1,9 +1,10 @@
 from fastapi import FastAPI
 from utils import *
 from typing import Dict, Any
-import urllib, uvicorn, re
+import urllib, uvicorn, re, os
 
-webhook_url = "https://hooks.slack.com/services/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"
+webhook_url = os.environ['error_webhook']
+
 
 app = FastAPI()
 
