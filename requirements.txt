@@ -1,5 +1,4 @@
-chromedriver-binary==113.0.5672.63.0
-fastapi==0.89.1
-selenium==4.7.2
-urllib3==1.26.13
-requests==2.28.1
+fastapi
+selenium
+requests
+lxml
