@@ -5,8 +5,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time, requests, json, re, lxml.html, random
 
-devices = requests.get("https://raw.githubusercontent.com/dtaubaso/aux/refs/heads/main/selenium_chrome_devices.txt").text
-devices = list(filter(None, devices.split("\n")))
+devices = ['Samsung Galaxy S20 Ultra', 'Pixel 3 XL', 'iPhone XR', 'Samsung Galaxy S8+']
 
 # Google Questions
 def getGoogleQuestions(url, clicks):
