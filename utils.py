@@ -41,6 +41,7 @@ def getRelated(url):
   options.add_argument("--disable-blink-features=AutomationControlled")
   options.add_argument("--enable-javascript")
   mobile_emulation = {"deviceName": random.choice(devices)}
+  print(mobile_emulation)
   options.add_experimental_option("mobileEmulation", mobile_emulation)
   driver = webdriver.Chrome(service=service, options=options)
   driver.implicitly_wait(3)
@@ -48,7 +49,6 @@ def getRelated(url):
     try:
       driver.get(url)
       body = driver.page_source
-      print(body)
       if body == None:
         raise Exception("Sin body")
     except Exception as e:
@@ -58,7 +58,7 @@ def getRelated(url):
   tambien_se_busco = tree.xpath("//div[@class='EDblX HG5ZQb']")
   element_list = [a.text_content() for a in tambien_se_busco[0].find_class("IF221e EXH1Ce")]
   related_ent = [sub.replace('\n', ' ') for sub in element_list]
-  related_ent = [re.sub(' Tendencias| Tendencia| Desde.*', '', a) for a in related_ent]
+  related_ent = [re.sub(' Tendencias| Tendencia| Desde.*1|Tendencia|...', '', a) for a in related_ent]
   related_ent = list(filter(None, related_ent))
   return related_ent
     

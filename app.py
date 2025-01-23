@@ -38,6 +38,7 @@ def people_also_search(req: Dict[Any, Any] = None):
     query = urllib.parse.quote(str(kw))
     base_url = 'https://www.google.com/search?q='
     url = f'{base_url}{query}&hl={lang}&gl={country}&uule={uule}'
+    print(f'kw: {kw}, url: {url}')
     try:
         response = getRelated(url)
         if response:
