@@ -48,6 +48,7 @@ def getRelated(url):
     try:
       driver.get(url)
       body = driver.page_source
+      print(body)
       if body == None:
         raise Exception("Sin body")
     except Exception as e:
