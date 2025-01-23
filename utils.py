@@ -11,10 +11,12 @@ devices = ['Samsung Galaxy S20 Ultra', 'Pixel 3 XL', 'iPhone XR', 'Samsung Galax
 def getGoogleQuestions(url, clicks):
   service = Service()
   options = webdriver.ChromeOptions()
-  options.add_argument("--headless")
+  options.add_argument("--headless=new")
   options.add_argument("--disable-gpu")
   options.add_argument("--disable-dev-shm-usage")
   options.add_argument("--no-sandbox")
+  options.add_argument("--disable-blink-features=AutomationControlled")
+  options.add_argument("--enable-javascript")
   driver = webdriver.Chrome(service=service, options=options)
   with driver:
     driver.get(url)
@@ -32,12 +34,14 @@ def getGoogleQuestions(url, clicks):
 def getRelated(url):
   service = Service()
   options = webdriver.ChromeOptions()
-  options.add_argument("--headless")
+  options.add_argument("--headless=new")
   options.add_argument("--disable-gpu")
   options.add_argument("--disable-dev-shm-usage")
+  options.add_argument("--no-sandbox")
+  options.add_argument("--disable-blink-features=AutomationControlled")
+  options.add_argument("--enable-javascript")
   mobile_emulation = {"deviceName": random.choice(devices)}
   options.add_experimental_option("mobileEmulation", mobile_emulation)
-  options.add_argument("--no-sandbox")
   driver = webdriver.Chrome(service=service, options=options)
   driver.implicitly_wait(3)
   with driver:
