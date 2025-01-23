@@ -58,7 +58,7 @@ def getRelated(url):
   tambien_se_busco = tree.xpath("//div[@class='EDblX HG5ZQb']")
   element_list = [a.text_content() for a in tambien_se_busco[0].find_class("IF221e EXH1Ce")]
   related_ent = [sub.replace('\n', ' ') for sub in element_list]
-  related_ent = [re.sub(' Tendencias| Tendencia| Desde.*1|Tendencia|\.\.\.', '', a) for a in related_ent]
+  related_ent = [re.sub(' Tendencias| Tendencia| Desde.*1|Tendencia|\.\.\.Tendencia', '', a) for a in related_ent]
   related_ent = list(filter(None, related_ent))
   return related_ent
     
