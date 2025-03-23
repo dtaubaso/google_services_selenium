@@ -72,8 +72,6 @@ def return_body(url):
   options.add_argument("--no-sandbox")
   options.add_argument("--disable-blink-features=AutomationControlled")
   options.add_argument("--enable-javascript")
-  mobile_emulation = {"deviceName": random.choice(devices)}
-  options.add_experimental_option("mobileEmulation", mobile_emulation)
   driver = uc.Chrome(service=service, options=options)
   with driver:
     driver.get(url)
