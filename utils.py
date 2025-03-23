@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time, requests, json, re, lxml.html, random
+import undetected_chromedriver as uc
 
 devices = ['Samsung Galaxy S20 Ultra', 'Pixel 3 XL', 'iPhone XR', 'Samsung Galaxy S8+']
 
@@ -73,7 +74,7 @@ def return_body(url):
   options.add_argument("--enable-javascript")
   mobile_emulation = {"deviceName": random.choice(devices)}
   options.add_experimental_option("mobileEmulation", mobile_emulation)
-  driver = webdriver.Chrome(service=service, options=options)
+  driver = uc.Chrome(service=service, options=options)
   with driver:
     driver.get(url)
     body = driver.page_source
