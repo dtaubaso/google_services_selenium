@@ -50,5 +50,17 @@ def people_also_search(req: Dict[Any, Any] = None):
         text = f'*Google People Also Search* Error: {e}'
         send_slack(text, webhook_url)
 
+@app.post("/get_body")
+def get_page_body(req: Dict[Any, Any] = None):
+    url = req['url']
+    try:
+        response = return_body(url)
+        return response
+    except Exception as e:
+        print(e)
+        text = f'*Get Body* Error: {e}'
+        send_slack(text, webhook_url)
+
+
 if __name__ == '__main__':
     uvicorn.run(app=app, host="127.0.0.1", port=8000)

@@ -61,6 +61,21 @@ def getRelated(url):
   related_ent = [re.sub(' Tendencias| Tendencia| Desde.*1|Tendencia|\.\.\.Tendencia', '', a) for a in related_ent]
   related_ent = list(filter(None, related_ent))
   return related_ent
+
+def return_body(url):
+  service = Service()
+  options = webdriver.ChromeOptions()
+  options.add_argument("--headless=new")
+  options.add_argument("--disable-gpu")
+  options.add_argument("--disable-dev-shm-usage")
+  options.add_argument("--no-sandbox")
+  options.add_argument("--disable-blink-features=AutomationControlled")
+  options.add_argument("--enable-javascript")
+  driver = webdriver.Chrome(service=service, options=options)
+  with driver:
+    driver.get(url)
+    body = driver.page_source
+  return body
     
 
 
