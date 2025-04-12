@@ -3,3 +3,4 @@ selenium
 requests
 lxml
 undetected-chromedriver
+firebase_admin

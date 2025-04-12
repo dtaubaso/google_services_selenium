@@ -2,8 +2,23 @@ from fastapi import FastAPI
 from utils import *
 from typing import Dict, Any
 import urllib, uvicorn, re, os
+import firebase_admin
+from firebase_admin import credentials, db
 
-webhook_url = os.environ['error_webhook']
+
+def get_webhook():
+    if not firebase_admin._apps:
+        cred = credentials.ApplicationDefault()
+        firebase_admin.initialize_app(cred, {
+            'databaseURL': 'https://nmd-firebase-default-rtdb.firebaseio.com',
+            'name': 'fbapp'
+        })
+
+    ref = db.reference('/acceso')
+    data = ref.get()
+    return data.get('error_webhook', None)
+
+webhook_url = get_webhook()
 
 
 app = FastAPI()
