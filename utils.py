@@ -72,7 +72,8 @@ def return_body(url):
   options.add_argument("--no-sandbox")
   options.add_argument("--disable-blink-features=AutomationControlled")
   options.add_argument("--enable-javascript")
-  driver = uc.Chrome(service=service, options=options)
+  #driver = uc.Chrome(service=service, options=options)
+  driver = webdriver.Chrome(service=service, options=options)
   with driver:
     driver.get(url)
     body = driver.page_source
