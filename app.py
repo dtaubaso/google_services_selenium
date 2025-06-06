@@ -23,7 +23,7 @@ webhook_url = get_webhook()
 
 app = FastAPI()
 
-@app.post("/google_question")
+@app.post("/google-question")
 def google_question(req: Dict[Any, Any] = None):
     kw = req['kw']
     uule = req['uule']
@@ -44,7 +44,7 @@ def google_question(req: Dict[Any, Any] = None):
         text = f'*Google People Also Ask* Error: {e}'
         send_slack(text, webhook_url)
 
-@app.post("/people_also_search")
+@app.post("/people-also-search")
 def people_also_search(req: Dict[Any, Any] = None):
     kw = req['kw']
     uule = req['uule']
@@ -65,7 +65,7 @@ def people_also_search(req: Dict[Any, Any] = None):
         text = f'*Google People Also Search* Error: {e}'
         send_slack(text, webhook_url)
 
-@app.post("/get_body")
+@app.post("/get-body")
 def get_page_body(req: Dict[Any, Any] = None):
     url = req['url']
     try:
